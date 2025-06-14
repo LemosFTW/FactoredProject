@@ -5,6 +5,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorDisplay from "@/components/ErrorDisplay";
 import PaginationComponent from "@/components/paginationComponent";
 import FilmCardComponent from "@/components/FilmCardComponent";
+import SearchComponent from "@/components/searchComponent";
 
 const fetchFilms = async (page: number) =>
   await get(`/films?page=${page}&limit=10`).then((response) => {
@@ -52,6 +53,11 @@ export default function FilmsPage() {
       <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">
         Star Wars Films
       </h1>
+      <SearchComponent
+        onSearch={() => {
+          console.log("TODO");
+        }}
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {films.result.map((film: any) => (
           <FilmCardComponent
