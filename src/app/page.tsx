@@ -8,15 +8,18 @@ function scrollToExploreSection() {
 export default function Home() {
   return (
     <>
-      <div className="galaxy-background">
-        <div className="stars"></div>
-      </div>
+      <div className="main"></div>
 
       <div
         className="flex flex-col items-center justify-center h-screen cursor-pointer text-center"
         onClick={scrollToExploreSection}
       >
-        <h1 className="text-6xl italic font-extrabold">Star Wars</h1>
+        <img
+          src="/star-wars-4.svg"
+          alt="Star Wars Logo Classic"
+          className="w-[40vw] h-auto mx-auto py-4 animate-fade-in-grow"
+        />
+
         <p className="text-2xl font-semibold ">
           Wellcome young padawan, lets explore the Star Wars Universe
         </p>
