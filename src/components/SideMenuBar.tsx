@@ -1,9 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
-interface SideMenuBarProps {
-  isOpen: boolean;
-}
+import { SideMenuBarProps } from "@/types/types";
 
 const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
   return (

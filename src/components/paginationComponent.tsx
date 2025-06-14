@@ -1,10 +1,4 @@
-interface PaginationProps {
-  currentPage: number;
-  hasNext: boolean;
-  hasPrevious: boolean;
-  onNext: () => void;
-  onPrevious: () => void;
-}
+import { PaginationProps } from "@/types/types";
 
 export default function PaginationComponent({
   currentPage,

@@ -1,10 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import SideMenuBar from "@/components/SideMenuBar";
-
-interface SideBarWrapperProps {
-  children: React.ReactNode;
-}
+import { SideBarWrapperProps } from "@/types/types";
 
 const SideBarWrapper: React.FC<SideBarWrapperProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
