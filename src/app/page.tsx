@@ -37,7 +37,7 @@ export default function Home() {
             <a href="/characters">Explore Characters</a>
           </button>
           <button className="px-6 py-3 text-white bg-purple-800  rounded-lg hover:bg-purple-900 hover:cursor-pointer transition duration-300">
-            <a href="/planets">Explore Films</a>
+            <a href="/films">Explore Films</a>
           </button>
         </div>
       </div>
