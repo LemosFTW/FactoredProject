@@ -7,34 +7,45 @@ import PaginationComponent from "@/components/paginationComponent";
 import FilmCardComponent from "@/components/FilmCardComponent";
 import SearchComponent from "@/components/searchComponent";
 
-const fetchFilms = async (page: number) =>
-  await get(`/films?page=${page}&limit=10`).then((response) => {
+const fetchFilms = async (page: number, searchQuery: string = "") => {
+  const queryParam = searchQuery ? `&title=${searchQuery}` : "";
+  return await get(`/films?page=${page}${queryParam}`).then((response) => {
     if (response.status === 200) return response.data;
     throw new Error("Failed to fetch films");
   });
+};
 
 export default function FilmsPage() {
   const [page, setPage] = useState(1);
   const [films, setFilms] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const getFilms = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchFilms(page);
-        setFilms(data);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const handler = setTimeout(() => {
+      const getFilms = async () => {
+        try {
+          setLoading(true);
+          setError(null);
+          const data = await fetchFilms(page, searchQuery);
+          console.log("Fetched characters:", data);
 
-    getFilms();
-  }, [page]);
+          setFilms(data);
+        } catch (err) {
+          setError(err as Error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      getFilms();
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [page, searchQuery]);
 
   const handlePreviousPage = () => {
     if (page > 1) setPage(page - 1);
@@ -42,6 +53,11 @@ export default function FilmsPage() {
 
   const handleNextPage = () => {
     if (films && films.next) setPage(page + 1);
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    setPage(1);
   };
 
   if (loading) return <LoadingSpinner />;
@@ -53,13 +69,9 @@ export default function FilmsPage() {
       <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">
         Star Wars Films
       </h1>
-      <SearchComponent
-        onSearch={() => {
-          console.log("TODO");
-        }}
-      />
+      <SearchComponent onSearch={handleSearch} query={searchQuery} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {films.result.map((film: any) => (
+        {films.result?.map((film: any) => (
           <FilmCardComponent
             key={film.uid}
             title={film.properties.title}
