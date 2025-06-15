@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { SearchComponentProps } from "@/types/types";
 
-const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleSearch = () => {
-    onSearch(searchQuery);
-  };
-
+const SearchComponent: React.FC<SearchComponentProps> = ({
+  onSearch,
+  query,
+}) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
+    const newQuery = event.target.value;
+    onSearch(newQuery);
   };
 
   return (
@@ -23,14 +15,13 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
       <input
         type="text"
         placeholder="Search..."
-        value={searchQuery}
+        value={query}
         onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
         className="flex-grow w-full p-2 pr-10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
       />
       <button
-        onClick={handleSearch}
-        className="absolute right-2 px-2 py-2 bg-transparent text-yellow-400 rounded-full  transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        onClick={() => onSearch(query)}
+        className="absolute right-2 px-2 py-2 bg-transparent text-yellow-400 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

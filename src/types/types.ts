@@ -1,5 +1,6 @@
 export interface SearchComponentProps {
   onSearch: (query: string) => void;
+  query: string;
 }
 export interface SideBarWrapperProps {
   children: React.ReactNode;
