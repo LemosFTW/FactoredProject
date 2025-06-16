@@ -81,7 +81,7 @@ export default function CharactersPage() {
   if (!characters) return <ErrorDisplay message={"No characters found."} />;
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-screen">
+    <div className="container mx-auto px-4 py-4 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">
         Star Wars Characters
       </h1>

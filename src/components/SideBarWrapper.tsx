@@ -28,7 +28,7 @@ const SideBarWrapper: React.FC<SideBarWrapperProps> = ({ children }) => {
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-51 text-white text-2xl hover:cursor-pointer transition-colors duration-300"
+        className="fixed top-4 left-4 z-51 py-1 text-white text-2xl hover:cursor-pointer transition-colors duration-300"
       >
         {isOpen ? "✕" : "☰"}
       </button>
