@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorDisplay from "@/components/ErrorDisplay";
 import SearchComponent from "@/components/searchComponent";
+import ModalComponent from "@/components/ModalComponent";
+import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
 
 const fetchCharacters = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&name=${searchQuery}` : "";
@@ -24,6 +26,8 @@ export default function CharactersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -62,6 +66,16 @@ export default function CharactersPage() {
     setPage(1);
   };
 
+  const handleCardClick = (character: any) => {
+    setSelectedCharacter(character);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedCharacter(null);
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorDisplay message={error.message} />;
   if (!characters) return <ErrorDisplay message={"No characters found."} />;
@@ -80,9 +94,7 @@ export default function CharactersPage() {
                 name={character.name}
                 url={character.url}
                 onClickFunction={() => {
-                  console.log(
-                    `Clicked on ${character.name} + ${character.url}`
-                  );
+                  handleCardClick(character);
                 }}
               />
             ))
@@ -92,9 +104,7 @@ export default function CharactersPage() {
                 name={character.properties.name}
                 url={character.properties.url}
                 onClickFunction={() => {
-                  console.log(
-                    `Clicked on ${character.name} + ${character.url}`
-                  );
+                  handleCardClick(character);
                 }}
               />
             ))}
@@ -105,6 +115,13 @@ export default function CharactersPage() {
         hasPrevious={!!characters.previous}
         onNext={handleNextPage}
         onPrevious={handlePreviousPage}
+      />
+
+      <ModalComponent
+        isOpen={showModal}
+        onClose={handleCloseModal}
+        entity={selectedCharacter}
+        fields={CHARACTER_DETAIL_FIELDS}
       />
     </div>
   );
