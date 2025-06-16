@@ -19,3 +19,19 @@ export interface ErrorDisplayProps {
 export interface SideMenuBarProps {
   isOpen: boolean;
 }
+
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  entity: any;
+  fields: string[];
+}
+export const CHARACTER_DETAIL_FIELDS = [
+  "gender",
+  "skin_color",
+  "hair_color",
+  "height",
+  "eye_color",
+  "mass",
+  "birth_year",
+];
