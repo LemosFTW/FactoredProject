@@ -18,8 +18,11 @@ export default function Home() {
           className="w-[40vw] h-auto mx-auto py-4 animate-fade-in-grow"
         />
 
-        <p className="text-2xl font-semibold ">
-          Wellcome young padawan, lets explore the Star Wars Universe
+        <p className="text-2xl font-semibold">
+          <span className="block sm:inline">Welcome young Padawan, </span>
+          <span className="block sm:inline">
+            let's explore the Star Wars Universe.
+          </span>
         </p>
       </div>
 
