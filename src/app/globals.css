@@ -33,6 +33,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   height: 1px;
   width: 1px;
   background-color: #fff;
@@ -101,10 +102,10 @@ body {
 
 @keyframes zoom {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
   100% {
-    transform: scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5);
   }
 }
 /* TODO FIX THIS ANIMATION*/
