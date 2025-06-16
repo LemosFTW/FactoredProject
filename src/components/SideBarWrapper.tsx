@@ -15,11 +15,7 @@ const SideBarWrapper: React.FC<SideBarWrapperProps> = ({ children }) => {
         {isOpen ? "✕" : "☰"}
       </button>
       <SideMenuBar isOpen={isOpen} />
-      <div
-        className={`transition-all duration-300 ${isOpen ? "ml-64" : "ml-0"}`}
-      >
-        {children}
-      </div>
+      <div className={`transition-all duration-300`}>{children}</div>
     </>
   );
 };
