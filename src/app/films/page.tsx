@@ -78,6 +78,8 @@ export default function FilmsPage() {
             director={film.properties.director}
             producer={film.properties.producer}
             release_date={film.properties.release_date}
+            opening_crawl={film.properties.opening_crawl}
+            episode_id={film.properties.episode_id}
           />
         ))}
       </div>
