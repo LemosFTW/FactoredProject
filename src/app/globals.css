@@ -108,18 +108,19 @@ body {
     transform: translate(-50%, -50%) scale(1.5);
   }
 }
-/* TODO FIX THIS ANIMATION*/
+
+.fade-in-grow-animation {
+  animation: fade-in-grow 2s normal forwards;
+}
+
 @keyframes fade-in-grow {
   0% {
     opacity: 0;
     transform: scale(0.5);
-
-    width: calc(var(--spacing) * 1);
   }
   100% {
     opacity: 1;
     transform: scale(1);
-    width: calc(var(--spacing) * 40);
   }
 }
 @keyframes typing {

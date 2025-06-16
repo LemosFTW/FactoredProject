@@ -15,7 +15,7 @@ export default function Home() {
         <img
           src="/star-wars-4.svg"
           alt="Star Wars Logo Classic"
-          className="w-[40vw] h-auto mx-auto py-4 animate-fade-in-grow"
+          className="w-[40vw] h-auto mx-auto py-4 fade-in-grow-animation"
         />
 
         <p className="text-2xl font-semibold">
