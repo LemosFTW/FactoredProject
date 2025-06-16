@@ -8,8 +8,6 @@ function scrollToExploreSection() {
 export default function Home() {
   return (
     <>
-      <div className="main"></div>
-
       <div
         className="flex flex-col items-center justify-center h-screen cursor-pointer text-center"
         onClick={scrollToExploreSection}
