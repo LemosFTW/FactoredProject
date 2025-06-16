@@ -122,3 +122,38 @@ body {
     width: calc(var(--spacing) * 40);
   }
 }
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.typing-effect {
+  width: 0;
+  animation: typing 2s steps(40, end) infinite, blink 0.75s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+}
