@@ -7,12 +7,19 @@ export default function PaginationComponent({
   onNext,
   onPrevious,
 }: PaginationProps) {
+  /*  ${
+        isOpen ? "left-0" : "-left-64"
+      }`}
+    */
   return (
     <div className="flex justify-center items-center gap-4 mt-8">
       <button
         onClick={onPrevious}
         disabled={!hasPrevious}
-        className="bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300"
+        className={`bg-yellow-500 hover:bg-yellow-600 ${
+          hasPrevious ? "hover:cursor-pointer" : "hover:cursor-auto"
+        } disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300
+        `}
       >
         Previous
       </button>
@@ -20,7 +27,10 @@ export default function PaginationComponent({
       <button
         onClick={onNext}
         disabled={!hasNext}
-        className="bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300"
+        className={`bg-yellow-500 hover:bg-yellow-600 ${
+          hasNext ? "hover:cursor-pointer" : "hover:cursor-auto"
+        } disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300
+        `}
       >
         Next
       </button>
