@@ -14,7 +14,7 @@ export default function FilmCardComponent({
   episode_id: string | number;
 }) {
   return (
-    <div className="bg-gray-800 p-4 rounded-lg shadow-md text-white border border-gray-700 hover:border-yellow-400 hover:scale-105 transition-all duration-200">
+    <div className="bg-gray-800 p-4 rounded-lg shadow-md text-white border border-gray-700 hover:border-yellow-400 hover:scale-105 transition-all duration-200 w-full max-w-sm mx-auto">
       <h2 className="text-xl font-semibold mb-2 text-yellow-400">{title}</h2>
       <div className="grid grid-cols-1 gap-1 text-sm mb-2">
         <div>

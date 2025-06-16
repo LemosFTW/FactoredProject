@@ -69,7 +69,9 @@ export default function FilmsPage() {
       <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">
         Star Wars Films
       </h1>
-      <SearchComponent onSearch={handleSearch} query={searchQuery} />
+      <div className="w-full max-w-sm mx-auto sm:max-w-full sm:mx-0">
+        <SearchComponent onSearch={handleSearch} query={searchQuery} />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {films.result?.map((film: any) => (
           <FilmCardComponent

@@ -11,7 +11,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
   };
 
   return (
-    <div className="flex items-center p-0 rounded-lg shadow-none mb-6 relative">
+    <div className="flex items-center p-0 rounded-lg shadow-none mb-10 relative w-full max-w-sm mx-auto sm:max-w-full sm:mx-0">
       <input
         type="text"
         placeholder="Search..."
