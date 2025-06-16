@@ -33,10 +33,10 @@ export default function Home() {
         <p className="text-lg mb-8 ">Discover characters, films, and more!</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button className="px-6 py-3 bg-red-800 text-white  rounded-lg hover:bg-red-900 hover:cursor-pointer transition duration-300">
+          <button className="px-6 py-3 shadow-md bg-background text-white rounded-4xl hover:bg-yellow-600  hover:cursor-pointer transition duration-300">
             <a href="/characters">Explore Characters</a>
           </button>
-          <button className="px-6 py-3 text-white bg-purple-800  rounded-lg hover:bg-purple-900 hover:cursor-pointer transition duration-300">
+          <button className="px-6 py-3 shadow-md text-white bg-background rounded-4xl hover:bg-yellow-600  hover:cursor-pointer transition duration-300">
             <a href="/films">Explore Films</a>
           </button>
         </div>

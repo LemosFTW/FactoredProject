@@ -17,7 +17,7 @@ const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
           <li className="mb-4">
             <Link
               href="/characters"
-              className="block hover:text-yellow-400 transition-colors duration-200"
+              className="block text-lg italic hover:text-yellow-400 transition-colors duration-200"
             >
               Characters
             </Link>
@@ -25,7 +25,7 @@ const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
           <li className="mb-4">
             <Link
               href="/films"
-              className="block hover:text-yellow-400 transition-colors duration-200"
+              className="block text-lg italic hover:text-yellow-400 transition-colors duration-200"
             >
               Films
             </Link>
