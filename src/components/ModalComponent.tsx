@@ -65,7 +65,7 @@ const ModalComponent: React.FC<ModalProps> = ({
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full border border-yellow-400 relative">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-yellow-400 hover:text-yellow-500 text-2xl font-bold"
+          className="absolute top-6 right-6 text-yellow-400 hover:cursor-pointer hover:text-red-500 text-2xl font-bold"
         >
           &times;
         </button>
@@ -80,7 +80,8 @@ const ModalComponent: React.FC<ModalProps> = ({
                   <span className="font-semibold capitalize">
                     {key.replace(/_/g, " ")}:
                   </span>{" "}
-                  {details[key]}
+                  {details[key]} {key == "height" && "cm"}{" "}
+                  {key == "mass" && "kg"}
                 </p>
               )
           )}
