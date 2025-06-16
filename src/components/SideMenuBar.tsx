@@ -5,7 +5,7 @@ import { SideMenuBarProps } from "@/types/types";
 const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
   return (
     <div
-      className={`fixed top-0 bottom-0 w-64 bg-gray-900 text-white p-4 shadow-lg flex flex-col justify-center transition-all duration-300 ${
+      className={`fixed top-0 bottom-0 w-64 bg-gray-900 text-white p-4 shadow-lg flex flex-col justify-center transition-all duration-300 z-50 ${
         isOpen ? "left-0" : "-left-64"
       }`}
     >
