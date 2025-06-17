@@ -7,10 +7,6 @@ export default function PaginationComponent({
   onNext,
   onPrevious,
 }: PaginationProps) {
-  /*  ${
-        isOpen ? "left-0" : "-left-64"
-      }`}
-    */
   return (
     <div className="flex justify-center items-center gap-4 mt-8">
       <button

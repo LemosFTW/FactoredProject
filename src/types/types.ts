@@ -35,3 +35,18 @@ export const CHARACTER_DETAIL_FIELDS = [
   "mass",
   "birth_year",
 ];
+
+export interface CharacterCardComponentProps {
+  name: string;
+  url: string;
+  onClickFunction: () => void;
+}
+
+export interface FilmCardComponentProps {
+  title: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  opening_crawl: string;
+  episode_id: string | number;
+}

@@ -1,3 +1,4 @@
+import { FilmCardComponentProps } from "@/types/types";
 export default function FilmCardComponent({
   title,
   director,
@@ -5,14 +6,7 @@ export default function FilmCardComponent({
   release_date,
   opening_crawl,
   episode_id,
-}: {
-  title: string;
-  director: string;
-  producer: string;
-  release_date: string;
-  opening_crawl: string;
-  episode_id: string | number;
-}) {
+}: FilmCardComponentProps) {
   return (
     <div className="bg-gray-800 p-4 rounded-lg shadow-md text-white border border-gray-700 hover:border-yellow-400 hover:scale-105 transition-all duration-200 w-full max-w-sm mx-auto">
       <h2 className="text-xl font-semibold mb-2 text-yellow-400">{title}</h2>

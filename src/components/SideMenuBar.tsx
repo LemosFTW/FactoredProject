@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { SideMenuBarProps } from "@/types/types";
 
-const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
+export default function SideMenuBar({ isOpen }: SideMenuBarProps) {
   return (
     <div
       className={`fixed top-0 bottom-0 w-64 bg-gray-900 text-white p-4 shadow-lg flex flex-col justify-center transition-all duration-300 z-50 ${
@@ -34,6 +34,4 @@ const SideMenuBar: React.FC<SideMenuBarProps> = ({ isOpen }) => {
       </nav>
     </div>
   );
-};
-
-export default SideMenuBar;
+}

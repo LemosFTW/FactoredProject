@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import SideMenuBar from "@/components/SideMenuBar";
 import { SideBarWrapperProps } from "@/types/types";
 
-const SideBarWrapper: React.FC<SideBarWrapperProps> = ({ children }) => {
+export default function SideBarWrapper({ children }: SideBarWrapperProps) {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +38,4 @@ const SideBarWrapper: React.FC<SideBarWrapperProps> = ({ children }) => {
       <div className={`transition-all duration-300`}>{children}</div>
     </div>
   );
-};
-
-export default SideBarWrapper;
+}

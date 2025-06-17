@@ -12,12 +12,12 @@ const getApiPath = (url: string) => {
   return url;
 };
 
-const ModalComponent: React.FC<ModalProps> = ({
+export default function ModalComponent({
   isOpen,
   onClose,
   entity,
   fields,
-}) => {
+}: ModalProps) {
   const [details, setDetails] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -89,6 +89,4 @@ const ModalComponent: React.FC<ModalProps> = ({
       </div>
     </div>
   );
-};
-
-export default ModalComponent;
+}

@@ -1,10 +1,10 @@
 import React from "react";
 import { SearchComponentProps } from "@/types/types";
 
-const SearchComponent: React.FC<SearchComponentProps> = ({
+export default function SearchComponent({
   onSearch,
   query,
-}) => {
+}: SearchComponentProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
     onSearch(newQuery);
@@ -40,6 +40,4 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
       </button>
     </div>
   );
-};
-
-export default SearchComponent;
+}

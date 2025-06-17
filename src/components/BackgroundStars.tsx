@@ -1,11 +1,9 @@
 import React from "react";
 
-const BackgroundStars: React.FC = () => {
+export default function BackgroundStars() {
   return (
     <div className="fixed inset-0 -z-10">
       <div className="main"></div>
     </div>
   );
-};
-
-export default BackgroundStars;
+}
