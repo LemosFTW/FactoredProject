@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import SideMenuBar from "@/components/SideMenuBar";
+import SideMenuBar from "@/components/sideMenuBar";
 import { SideBarWrapperProps } from "@/types/types";
 
 export default function SideBarWrapper({ children }: SideBarWrapperProps) {

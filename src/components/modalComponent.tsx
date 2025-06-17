@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { get } from "@/services/axios";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import ErrorDisplay from "@/components/ErrorDisplay";
+import LoadingSpinner from "@/components/loadingSpinner";
+import ErrorDisplay from "@/components/errorDisplay";
 import { ModalProps } from "@/types/types";
 const getApiPath = (url: string) => {
   if (url.startsWith("http")) {

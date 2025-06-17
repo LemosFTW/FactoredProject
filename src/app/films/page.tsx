@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { get } from "@/services/axios";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import ErrorDisplay from "@/components/ErrorDisplay";
+import LoadingSpinner from "@/components/loadingSpinner";
+import ErrorDisplay from "@/components/errorDisplay";
 import PaginationComponent from "@/components/paginationComponent";
-import FilmCardComponent from "@/components/FilmCardComponent";
+import FilmCardComponent from "@/components/filmCardComponent";
 import SearchComponent from "@/components/searchComponent";
 import { usePagination } from "@/hooks/usePage";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
