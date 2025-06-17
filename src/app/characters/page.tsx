@@ -11,6 +11,7 @@ import ModalComponent from "@/components/ModalComponent";
 import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
 import { usePagination } from "@/hooks/usePage";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
+import { useModal } from "@/hooks/useModal";
 
 const fetchCharacters = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&name=${searchQuery}` : "";
@@ -29,8 +30,12 @@ export default function CharactersPage() {
   const [characters, setCharacters] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
+  const {
+    isOpen: showModal,
+    selected: selectedCharacter,
+    openModal,
+    closeModal,
+  } = useModal<any>();
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -56,15 +61,7 @@ export default function CharactersPage() {
     };
   }, [page, searchQuery]);
 
-  const handleCardClick = (character: any) => {
-    setSelectedCharacter(character);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedCharacter(null);
-  };
+  const handleCardClick = openModal;
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorDisplay message={error.message} />;
@@ -109,7 +106,7 @@ export default function CharactersPage() {
 
       <ModalComponent
         isOpen={showModal}
-        onClose={handleCloseModal}
+        onClose={closeModal}
         entity={selectedCharacter}
         fields={CHARACTER_DETAIL_FIELDS}
       />
