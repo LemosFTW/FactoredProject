@@ -6,6 +6,7 @@ import ErrorDisplay from "@/components/ErrorDisplay";
 import PaginationComponent from "@/components/paginationComponent";
 import FilmCardComponent from "@/components/FilmCardComponent";
 import SearchComponent from "@/components/searchComponent";
+import { usePagination } from "@/hooks/usePage";
 
 const fetchFilms = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&title=${searchQuery}` : "";
@@ -16,11 +17,12 @@ const fetchFilms = async (page: number, searchQuery: string = "") => {
 };
 
 export default function FilmsPage() {
-  const [page, setPage] = useState(1);
   const [films, setFilms] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const { handlePreviousPage, handleNextPage, page, setPage } =
+    usePagination(1);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -46,14 +48,6 @@ export default function FilmsPage() {
       clearTimeout(handler);
     };
   }, [page, searchQuery]);
-
-  const handlePreviousPage = () => {
-    if (page > 1) setPage(page - 1);
-  };
-
-  const handleNextPage = () => {
-    if (films && films.next) setPage(page + 1);
-  };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -89,7 +83,7 @@ export default function FilmsPage() {
         currentPage={page}
         hasNext={!!films.next}
         hasPrevious={!!films.previous}
-        onNext={handleNextPage}
+        onNext={() => handleNextPage(!!films.next)}
         onPrevious={handlePreviousPage}
       />
     </div>

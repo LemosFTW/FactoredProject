@@ -9,6 +9,7 @@ import ErrorDisplay from "@/components/ErrorDisplay";
 import SearchComponent from "@/components/searchComponent";
 import ModalComponent from "@/components/ModalComponent";
 import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
+import { usePagination } from "@/hooks/usePage";
 
 const fetchCharacters = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&name=${searchQuery}` : "";
@@ -21,7 +22,8 @@ const fetchCharacters = async (page: number, searchQuery: string = "") => {
 };
 
 export default function CharactersPage() {
-  const [page, setPage] = useState(1);
+  const { page, setPage, handlePreviousPage, handleNextPage } =
+    usePagination(1);
   const [characters, setCharacters] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -52,14 +54,6 @@ export default function CharactersPage() {
       clearTimeout(handler);
     };
   }, [page, searchQuery]);
-
-  const handlePreviousPage = () => {
-    if (page > 1) setPage(page - 1);
-  };
-
-  const handleNextPage = () => {
-    if (characters && characters.next) setPage(page + 1);
-  };
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -113,7 +107,7 @@ export default function CharactersPage() {
         currentPage={page}
         hasNext={!!characters.next}
         hasPrevious={!!characters.previous}
-        onNext={handleNextPage}
+        onNext={() => handleNextPage(!!characters.next)}
         onPrevious={handlePreviousPage}
       />
 
