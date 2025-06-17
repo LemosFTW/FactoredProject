@@ -1,14 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { get } from "@/services/axios";
 import LoadingSpinner from "@/components/loadingSpinner";
-import ErrorDisplay from "@/components/errorDisplay";
 import PaginationComponent from "@/components/paginationComponent";
 import FilmCardComponent from "@/components/filmCardComponent";
-import SearchComponent from "@/components/searchComponent";
 import { usePagination } from "@/hooks/usePage";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
-
 const fetchFilms = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&title=${searchQuery}` : "";
   return await get(`/films?page=${page}${queryParam}`).then((response) => {
@@ -16,6 +13,8 @@ const fetchFilms = async (page: number, searchQuery: string = "") => {
     throw new Error("Failed to fetch films");
   });
 };
+const SearchComponent = lazy(() => import("@/components/searchComponent"));
+const ErrorDisplay = lazy(() => import("@/components/errorDisplay"));
 
 export default function FilmsPage() {
   const [films, setFilms] = useState<any>(null);
@@ -51,8 +50,19 @@ export default function FilmsPage() {
   }, [page, searchQuery]);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorDisplay message={error.message} />;
-  if (!films) return <ErrorDisplay message={"No films found."} />;
+
+  if (error)
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ErrorDisplay message={error.message} />
+      </Suspense>
+    );
+  if (!films)
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ErrorDisplay message={"No films found."} />
+      </Suspense>
+    );
 
   return (
     <div className="container mx-auto px-4 py-4 min-h-screen">

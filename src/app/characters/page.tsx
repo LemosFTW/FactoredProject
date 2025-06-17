@@ -1,17 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { get } from "@/services/axios";
 import CharacterCardComponent from "@/components/characterCardComponent";
 import PaginationComponent from "@/components/paginationComponent";
 import { useEffect } from "react";
 import LoadingSpinner from "@/components/loadingSpinner";
-import ErrorDisplay from "@/components/errorDisplay";
-import SearchComponent from "@/components/searchComponent";
-import ModalComponent from "@/components/modalComponent";
-import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
+import React from "react";
 import { usePagination } from "@/hooks/usePage";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { useModal } from "@/hooks/useModal";
+import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
+import { lazy } from "react";
 
 const fetchCharacters = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&name=${searchQuery}` : "";
@@ -22,6 +21,10 @@ const fetchCharacters = async (page: number, searchQuery: string = "") => {
     }
   );
 };
+
+const ModalComponent = lazy(() => import("@/components/modalComponent"));
+const SearchComponent = lazy(() => import("@/components/searchComponent"));
+const ErrorDisplay = lazy(() => import("@/components/errorDisplay"));
 
 export default function CharactersPage() {
   const { page, setPage, handlePreviousPage, handleNextPage } =
@@ -64,15 +67,27 @@ export default function CharactersPage() {
   const handleCardClick = openModal;
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorDisplay message={error.message} />;
-  if (!characters) return <ErrorDisplay message={"No characters found."} />;
+  if (error)
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ErrorDisplay message={error.message} />
+      </Suspense>
+    );
+  if (!characters)
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ErrorDisplay message={"No characters found."} />
+      </Suspense>
+    );
 
   return (
     <div className="container mx-auto px-4 py-4 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">
         Star Wars Characters
       </h1>
-      <SearchComponent onSearch={handleSearch} query={searchQuery} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <SearchComponent onSearch={handleSearch} query={searchQuery} />
+      </Suspense>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 card-appear">
         {characters.results instanceof Array
           ? characters.results.map((character: any) => (
@@ -104,12 +119,14 @@ export default function CharactersPage() {
         onPrevious={handlePreviousPage}
       />
 
-      <ModalComponent
-        isOpen={showModal}
-        onClose={closeModal}
-        entity={selectedCharacter}
-        fields={CHARACTER_DETAIL_FIELDS}
-      />
+      <Suspense fallback={<LoadingSpinner />}>
+        <ModalComponent
+          isOpen={showModal}
+          onClose={closeModal}
+          entity={selectedCharacter}
+          fields={CHARACTER_DETAIL_FIELDS}
+        />
+      </Suspense>
     </div>
   );
 }
