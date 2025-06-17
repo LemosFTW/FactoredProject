@@ -73,7 +73,7 @@ export default function CharactersPage() {
         Star Wars Characters
       </h1>
       <SearchComponent onSearch={handleSearch} query={searchQuery} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 card-appear">
         {characters.results instanceof Array
           ? characters.results.map((character: any) => (
               <CharacterCardComponent
