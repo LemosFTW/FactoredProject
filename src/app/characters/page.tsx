@@ -91,7 +91,7 @@ export default function CharactersPage() {
                 name={character.properties.name}
                 url={character.properties.url}
                 onClickFunction={() => {
-                  handleCardClick(character);
+                  handleCardClick(character.properties);
                 }}
               />
             ))}
