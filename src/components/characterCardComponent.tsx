@@ -10,6 +10,7 @@ export default function CharacterCardComponent({
       <button
         className="bg-yellow-500 hover:bg-yellow-600 hover:cursor-pointer text-black font-bold py-2 px-4 rounded mt-4 transition-colors duration-300 block w-full"
         onClick={onClickFunction}
+        aria-label={`View more details of ${name}`}
       >
         view more
       </button>

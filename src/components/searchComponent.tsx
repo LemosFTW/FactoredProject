@@ -22,6 +22,7 @@ export default function SearchComponent({
       <button
         onClick={() => onSearch(query)}
         className="absolute right-2 px-2 py-2 bg-transparent text-yellow-400 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        aria-label="Search"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

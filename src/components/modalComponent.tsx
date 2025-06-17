@@ -66,6 +66,7 @@ export default function ModalComponent({
         <button
           onClick={onClose}
           className="absolute top-6 right-6 text-yellow-400 hover:cursor-pointer hover:text-red-500 text-2xl font-bold"
+          aria-label="Close modal"
         >
           &times;
         </button>

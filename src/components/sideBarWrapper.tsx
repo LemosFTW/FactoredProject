@@ -29,6 +29,7 @@ export default function SideBarWrapper({ children }: SideBarWrapperProps) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-4 left-4 z-51 py-1 text-white text-2xl hover:cursor-pointer transition-colors duration-300"
+        aria-label={isOpen ? "Close menuBar" : "Open menuBar"}
       >
         {isOpen ? "✕" : "☰"}
       </button>

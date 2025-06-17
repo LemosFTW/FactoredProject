@@ -12,6 +12,7 @@ export default function PaginationComponent({
       <button
         onClick={onPrevious}
         disabled={!hasPrevious}
+        aria-label="Previous page"
         className={`bg-yellow-500 hover:bg-yellow-600 ${
           hasPrevious ? "hover:cursor-pointer" : "hover:cursor-auto"
         } disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300
@@ -23,6 +24,7 @@ export default function PaginationComponent({
       <button
         onClick={onNext}
         disabled={!hasNext}
+        aria-label="Next page"
         className={`bg-yellow-500 hover:bg-yellow-600 ${
           hasNext ? "hover:cursor-pointer" : "hover:cursor-auto"
         } disabled:bg-gray-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300
