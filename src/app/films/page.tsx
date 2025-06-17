@@ -7,6 +7,7 @@ import PaginationComponent from "@/components/paginationComponent";
 import FilmCardComponent from "@/components/FilmCardComponent";
 import SearchComponent from "@/components/searchComponent";
 import { usePagination } from "@/hooks/usePage";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
 
 const fetchFilms = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&title=${searchQuery}` : "";
@@ -20,9 +21,9 @@ export default function FilmsPage() {
   const [films, setFilms] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const { handlePreviousPage, handleNextPage, page, setPage } =
     usePagination(1);
+  const { searchQuery, handleSearch } = useSearchQuery("", () => setPage(1));
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -48,11 +49,6 @@ export default function FilmsPage() {
       clearTimeout(handler);
     };
   }, [page, searchQuery]);
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    setPage(1);
-  };
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorDisplay message={error.message} />;

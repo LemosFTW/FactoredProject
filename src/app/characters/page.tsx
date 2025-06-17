@@ -10,6 +10,7 @@ import SearchComponent from "@/components/searchComponent";
 import ModalComponent from "@/components/ModalComponent";
 import { CHARACTER_DETAIL_FIELDS } from "@/types/types";
 import { usePagination } from "@/hooks/usePage";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
 
 const fetchCharacters = async (page: number, searchQuery: string = "") => {
   const queryParam = searchQuery ? `&name=${searchQuery}` : "";
@@ -24,10 +25,10 @@ const fetchCharacters = async (page: number, searchQuery: string = "") => {
 export default function CharactersPage() {
   const { page, setPage, handlePreviousPage, handleNextPage } =
     usePagination(1);
+  const { searchQuery, handleSearch } = useSearchQuery("", () => setPage(1));
   const [characters, setCharacters] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
 
@@ -54,11 +55,6 @@ export default function CharactersPage() {
       clearTimeout(handler);
     };
   }, [page, searchQuery]);
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    setPage(1);
-  };
 
   const handleCardClick = (character: any) => {
     setSelectedCharacter(character);
